@@ -4,8 +4,8 @@ import { collection, doc, getDoc } from 'firebase/firestore';
 import db from '../../firebase';
 
 function UserPage() {
-  const { userId } = useParams(); // Получить ID пользователя из URL
-  const [user, setUser] = useState(null); // Состояние для данных пользователя
+  const { userId } = useParams();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     async function fetchUser() {
@@ -18,26 +18,60 @@ function UserPage() {
           console.log('User not found');
         }
       } catch (error) {
+        console.log("Error user token");
         console.error(error);
       }
     }
     fetchUser();
   }, [userId]);
 
-  // Ваш код для отображения данных пользователя
-
   return (
-    <div>
-      <h1>User Page</h1>
-      {user ? (
-        <div>
-          <p>User ID: {user.userId}</p>
-          <p>Name: {user.name}</p>
-          <p>Email: {user.email}</p>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div className="square-box__reg">
+      <div className="wrap_user">
+        {user ? (
+          <div className="flex-wrap__user-inf">
+            <div>
+              <div className="user-logo box-inf">
+                <img className="img-logo" alt="" src={user.user.photoUrl} />
+              </div>
+              <div className="box-inf">
+                <h1 className="title-inf">Name:</h1>
+                <p className="title-inf__user">{user.user.name}.</p>
+              </div>
+              <div className="box-inf">
+                <h1 className="title-inf">Email:</h1>
+                <p className="title-inf__user">{user.user.email}.</p>
+              </div>
+              <div className="box-inf">
+                <h1 className="title-inf">Education:</h1>
+                <p className="title-inf__user">{user.user.educ}.</p>
+              </div>
+              <div className="box-inf">
+                <h1 className="title-inf">Expiriens:</h1>
+                <p className="title-inf__user">{user.user.exp}.</p>
+              </div>
+              <div className="box-inf">
+                <h1 className="title-inf">Languages:</h1>
+                <p className="title-inf__user">{user.user.lang}.</p>
+              </div>
+            </div>
+            <div>
+              <h1 className="title-works">Works.</h1>
+              <div className="scroll wrap-user-works">
+                {user.user.repsUser.map(repo => (
+                  <a href={repo.url} className="box-li__user-works">
+                    <li className="title-map__works-user" key={repo.name}>{repo.name}</li>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="wrap_reg">
+            <div className="lds-ripple"><div></div><div></div></div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

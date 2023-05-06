@@ -6,11 +6,16 @@ import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router-dom';
 
 
-export default function RegInf({ githubInf }) {
+export default function RegInf({ 
+    githubInf,
+    repos
+}) {
     const [name, setName] = React.useState("");
     const [educ, setEduc] = React.useState("");
     const [exp, setExp] = React.useState("");
     const [lang, setLang] = React.useState("");
+
+    const [error, setError] = React.useState("");
 
     const cookies = new Cookies();
 
@@ -20,6 +25,13 @@ export default function RegInf({ githubInf }) {
 
     const email = githubInf.email;
     const photoUrl = githubInf.photoUrl;
+    const repsUser = repos.map(repo => {
+        return {
+          name: repo.name,
+          url: repo.clone_url
+        };
+    });
+      
 
     const user = {
         email,
@@ -27,7 +39,8 @@ export default function RegInf({ githubInf }) {
         name,
         exp,
         educ,
-        lang
+        lang,
+        repsUser
     }
 
     const endReg = async () => {
@@ -39,10 +52,11 @@ export default function RegInf({ githubInf }) {
             try {
                 const userRef = doc(collection(db, 'Users'), tokenId);
                 await setDoc(userRef, { user });
+                console.log(repos);
                 // rout
-                history(`/users/${tokenId}`); // create user page
+                history(`/user/${tokenId}`); // create user page
             } catch (err) {
-                console.error(err);
+                setError(err);
             }
         }
     }
@@ -51,6 +65,8 @@ export default function RegInf({ githubInf }) {
        <div className="square-box__reg">
             <div className="wrap_reg">
                 <div className="container__inpt-reg__inf">
+                    <h1 className="error__message">{error}</h1>
+                    <h1 className="title-inf__reg">Заповніть інформацію.</h1>
                     <input onChange={(e) => setName(e.target.value)} placeholder="Name" className="inpt__reg-inf" type="text" />
                     <input onChange={(e) => setEduc(e.target.value)} placeholder="Education" className="inpt__reg-inf" type="text" />
                     <input onChange={(e) => setExp(e.target.value)} placeholder="Expiriens" className="inpt__reg-inf" type="text" />

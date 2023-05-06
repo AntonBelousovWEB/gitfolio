@@ -2,15 +2,17 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UserPage from './components/userPage';
 import Reg from './components/registration';
+import './style/style.css';
 
 function App() {
   return (
     <section>
+      <h1 className="title-logo__app"><span className="git_logo-app">git</span>.folio</h1>
       <div className="container">
         <Router>
           <Routes>
             <Route path="/" element={<Reg />} />
-            <Route path="/users/:userId" element={<UserPage />} />
+            <Route path="/user/:userId" element={<UserPage />} />
           </Routes>
         </Router>
       </div>

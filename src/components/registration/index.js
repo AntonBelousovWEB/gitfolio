@@ -10,6 +10,10 @@ export default function Reg() {
     const [key, setKey] = React.useState(0);
 
     const [user, setUser] = React.useState([]);
+    const [accessToken, setAccessToken] = React.useState('');
+    const [repos, setRepos] = React.useState([]);
+
+    const [error, setError] = React.useState("");
 
     const nextStep = () => {
       setActiveStep(activeStep + 1);
@@ -21,20 +25,34 @@ export default function Reg() {
         .then((result) => {
             const user = result.user;
             setUser(user.reloadUserInfo);
+            const Astoken = user.reloadUserInfo.screenName;
+            setAccessToken(Astoken);
             nextStep();
         }).catch((error) => {
-            console.error(error);
+            setError(error);
         });
     };
+
+    React.useEffect(() => {
+        if (accessToken) {
+            const getRep = async (username) => {
+                const response = await fetch(`https://api.github.com/users/${username}/repos`);
+                const data = await response.json();
+                setRepos(data); 
+            }
+            getRep(accessToken)
+        }
+    }, [accessToken]);
+      
 
     const stepReg = [
         {
             step: 1,
-            content: <RegGit github={signInWithGithub} />
+            content: <RegGit error={error} github={signInWithGithub} />
         },
         {
             step: 2,
-            content: <RegInfRes githubInf={user} />
+            content: <RegInfRes repos={repos} githubInf={user} />
         }
     ]
 

@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { collection, doc, getDoc } from 'firebase/firestore';
 import db from '../../firebase';
+import { Helmet } from 'react-helmet';
 
 function UserPage() {
   const { userId } = useParams();
   const [user, setUser] = useState(null);
+  const [name, setName] = useState("");
 
   useEffect(() => {
     async function fetchUser() {
@@ -14,6 +16,7 @@ function UserPage() {
         const userDoc = await getDoc(userRef);
         if (userDoc.exists()) {
           setUser(userDoc.data());
+          setName(user.user.name);
         } else {
           console.log('User not found');
         }
@@ -23,10 +26,13 @@ function UserPage() {
       }
     }
     fetchUser();
-  }, [userId]);
+  }, [userId, user]);
 
   return (
     <div className="square-box__reg">
+      <Helmet>
+          <title>{ name }</title>
+      </Helmet>
       <div className="wrap_user">
         {user ? (
           <div className="flex-wrap__user-inf">

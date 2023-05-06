@@ -5,7 +5,7 @@ import { GithubAuthProvider, getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAvXvnyo4ABY9jI9nk-GHWDPiwcD-ZMbSI",
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
   authDomain: "gitfolio-679e8.firebaseapp.com",
   projectId: "gitfolio-679e8",
   storageBucket: "gitfolio-679e8.appspot.com",

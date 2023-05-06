@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UserPage from './components/userPage';
 import Reg from './components/registration';
 import './style/style.css';
+import './style/media.css';
 
 function App() {
   return (

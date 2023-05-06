@@ -43,8 +43,11 @@ export default function Reg() {
             getRep(accessToken)
         }
     }, [accessToken]);
-      
 
+    React.useEffect(() => {
+        document.title = 'Registration';
+      }, []);
+    
     const stepReg = [
         {
             step: 1,

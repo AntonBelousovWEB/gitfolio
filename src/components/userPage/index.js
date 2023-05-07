@@ -14,6 +14,7 @@ function UserPage() {
       try {
         const userRef = doc(collection(db, 'Users'), userId);
         const userDoc = await getDoc(userRef);
+        console.log("Get User information 📜");
         if (userDoc.exists()) {
           setUser(userDoc.data());
           setName(user.user.name);
@@ -26,7 +27,7 @@ function UserPage() {
       }
     }
     fetchUser();
-  }, [userId, user]);
+  }, [userId]);
 
   return (
     <div className="square-box__reg">
@@ -61,7 +62,7 @@ function UserPage() {
                 <p className="title-inf__user">{user.user.lang}.</p>
               </div>
             </div>
-            <div>
+            <div className="works-box__user">
               <h1 className="title-works">Works.</h1>
               <div className="scroll wrap-user-works">
                 {user.user.repsUser.map(repo => (

@@ -195,12 +195,14 @@ section {
 }
 
 .box-inf {
-    max-width: 500px;
     padding: 15px;
     border: 3px solid #0F0E17;
     border-radius: 5px;
     margin-bottom: 10px;
-}
+    width: 100%;
+    box-sizing: border-box;
+    flex-shrink: 1;
+  }  
 
 .title-map__works-user {
     color: rgb(255, 255, 255);
@@ -278,10 +280,17 @@ section {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    flex-wrap: wrap;
     column-gap: 20px;
     gap: 20px;
     animation: appearance 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.bgc-box__inf {
+    max-width: 400px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .error__message {

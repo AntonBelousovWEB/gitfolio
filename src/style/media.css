@@ -1,5 +1,11 @@
 @media screen and (max-width: 767px) {
-    .box-inf {
-        max-width: 270px;
+    .flex-wrap__user-inf {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 1465px) {
+    .wrap_user {
+        margin-top: 20px;
     }
 }

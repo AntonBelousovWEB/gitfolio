@@ -36,7 +36,7 @@ function UserPage() {
       <div className="wrap_user">
         {user ? (
           <div className="flex-wrap__user-inf">
-            <div>
+            <div className="bgc-box__inf">
               <div className="user-logo box-inf">
                 <img className="img-logo" alt="" src={user.user.photoUrl} />
               </div>
@@ -65,8 +65,23 @@ function UserPage() {
               <h1 className="title-works">Works.</h1>
               <div className="scroll wrap-user-works">
                 {user.user.repsUser.map(repo => (
-                  <a href={repo.url} className="box-li__user-works">
-                    <li className="title-map__works-user" key={repo.name}>{repo.name}</li>
+                  <a key={repo.name} href={repo.url} className="box-li__user-works">
+                    <li className="title-map__works-user">{repo.name}</li>
+                    <hr className="line-inf" />
+                    <div className="inf-map__work-user">
+                      {repo.language < 1 ? (
+                          null
+                        ) : (
+                          <div className="inf__">
+                            <img alt="" src="/img/code.png" />
+                            <h1>{repo.language}</h1>
+                          </div>
+                        )}
+                      <div className="inf__">
+                        <img alt="" src="/img/eye.png" />
+                        <h1>{repo.watchers}</h1>
+                      </div>
+                    </div>
                   </a>
                 ))}
               </div>

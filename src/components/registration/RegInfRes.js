@@ -28,7 +28,9 @@ export default function RegInf({
     const repsUser = repos.map(repo => {
         return {
           name: repo.name,
-          url: repo.clone_url
+          url: repo.clone_url,
+          language: repo.language,
+          watchers: repo.watchers
         };
     });
       
@@ -48,6 +50,7 @@ export default function RegInf({
             return null;
         } else {
             console.log("Successful ✨");
+            console.log(repos);
             cookies.set("tokenId", tokenId);
             try {
                 const userRef = doc(collection(db, 'Users'), tokenId);

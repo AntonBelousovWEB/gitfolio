@@ -197,7 +197,7 @@ section {
 .box-inf {
     max-width: 500px;
     padding: 15px;
-    border: 2px solid #0F0E17;
+    border: 3px solid #0F0E17;
     border-radius: 5px;
     margin-bottom: 10px;
 }
@@ -211,7 +211,7 @@ section {
 }
 
 .title-works {
-    color: rgb(255, 255, 255);
+    color: rgb(228, 127, 69);
     font-family: 'Open Sans', sans-serif;
     font-weight: var(--open-bold);
     font-size: 32px;
@@ -225,15 +225,44 @@ section {
     max-width: 600px;
     max-height: 830px;
     overflow-y: auto;
+    padding-right: 10px;
 }
 
 .box-li__user-works {
     background-color: #0F0E17;
     padding: 15px;
     border-radius: 10px;
+    max-width: 100%;
+    flex-grow: 1;
     height: 100px;
     display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.inf-map__work-user {
+    margin-top: 10px;
+    display: flex;
+    column-gap: 10px;
+    color: #fff;
     align-items: center;
+
+    font-family: 'Open Sans', sans-serif;
+    font-weight: var(--open-bold);
+    font-size: 15px;
+}
+
+.inf__ {
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
+}
+
+.line-inf {
+    width: 100%;
+    height: 2px;
+    background-color: #2D2C31;
+    margin-top: 5px;
 }
 
 .flex-wrap__user-inf {

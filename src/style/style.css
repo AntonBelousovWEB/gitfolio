@@ -265,6 +265,15 @@ section {
     margin-top: 5px;
 }
 
+@keyframes appearance {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}
+
 .flex-wrap__user-inf {
     display: flex;
     width: 100%;
@@ -272,6 +281,7 @@ section {
     flex-wrap: wrap;
     column-gap: 20px;
     gap: 20px;
+    animation: appearance 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 .error__message {

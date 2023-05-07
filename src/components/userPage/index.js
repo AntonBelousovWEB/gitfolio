@@ -54,7 +54,7 @@ function UserPage() {
                 <p className="title-inf__user">{user.user.educ}.</p>
               </div>
               <div className="box-inf">
-                <h1 className="title-inf">Expiriens:</h1>
+                <h1 className="title-inf">Experience:</h1>
                 <p className="title-inf__user">{user.user.exp}.</p>
               </div>
               <div className="box-inf">

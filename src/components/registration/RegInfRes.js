@@ -50,12 +50,10 @@ export default function RegInf({
             return null;
         } else {
             console.log("Successful ✨");
-            console.log(repos);
             cookies.set("tokenId", tokenId);
             try {
                 const userRef = doc(collection(db, 'Users'), tokenId);
                 await setDoc(userRef, { user });
-                console.log(repos);
                 // rout
                 history(`/user/${tokenId}`); // create user page
             } catch (err) {
